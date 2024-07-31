@@ -12,7 +12,7 @@
 
 - 사람이 이해할 수 있는 문자/기호를 사용해 값을 생성하는 표기법
 - JS 엔진은 코드 실행 시점인 런타임에 리터럴을 평가하고 값을 생성
-  <br><img src="./yjs_images/05_image_1.png.png" alt="05_image_1" width="500px">
+  <br><img src="./yjs_images/05_image_1.png" alt="05_image_1" width="500px">
 
 <br>
 
