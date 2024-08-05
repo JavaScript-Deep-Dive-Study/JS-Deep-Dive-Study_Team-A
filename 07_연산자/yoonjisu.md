@@ -54,16 +54,16 @@
 
   - 문자열 연결 연산자 (+)
 
-    - - 연산자는 피연산자 중 하나 이상이 문자열일 경우, 문자열 연결 동작을 수행
+    - 연산자는 피연산자 중 하나 이상이 문자열일 경우, 문자열 연결 동작을 수행
 
-        ```jsx
-        "1" + 2; // 12
+      ```jsx
+      "1" + 2; // 12
 
-        // 암묵적 타입 변환(타입 강제 변환)
-        1 + true; // 2
-        1 + false; // 1
-        1 + null; // 1
-        ```
+      // 암묵적 타입 변환(타입 강제 변환)
+      1 + true; // 2
+      1 + false; // 1
+      1 + null; // 1
+      ```
 
 <br>
 
@@ -83,22 +83,23 @@
   - 동등 비교 연산자(==)
     - 비교적 느슨한 비교, 값만 비교, 결과 예측이 상대적으로 어려움, 암묵적 타입 변환 O
   - 일치 비교 연산자(===)
+
     - 엄격한 비교, 값과 타입 모두 고려해서 비교, 결과 예측이 좀 더 쉬움, 암묵적 타입 변환 X
 
-  ```jsx
-  5 == "5"; // true, 타입은 다르지만 암묵적 타입 변환 통해, 타입을 일치시키면 동등해짐
-  5 === "5"; // false, 일치 비교 연산자는 암묵적 타입 변환 안 하고 두 값을 비교
+    ```jsx
+    5 == "5"; // true, 타입은 다르지만 암묵적 타입 변환 통해, 타입을 일치시키면 동등해짐
+    5 === "5"; // false, 일치 비교 연산자는 암묵적 타입 변환 안 하고 두 값을 비교
 
-  NaN === NaN; // false, NaN은 자신과 일치하지 않는 유일한 값
-  // 그래서 숫자가 NaN인지 조사하려면 빌트인 함수를 사용해야 함
-  Number.isNaN(NaN); // true
-  Number.isNaN(123); // false
-  Number.isNaN(1 + undefined); // true
+    NaN === NaN; // false, NaN은 자신과 일치하지 않는 유일한 값
+    // 그래서 숫자가 NaN인지 조사하려면 빌트인 함수를 사용해야 함
+    Number.isNaN(NaN); // true
+    Number.isNaN(123); // false
+    Number.isNaN(1 + undefined); // true
 
-  // 양의 0과 음의 0은 일치 비교 연산자로 비교해도 무조건 같다고 나옴
-  0 === -0; // true
-  0 == -0; // true
-  ```
+    // 양의 0과 음의 0은 일치 비교 연산자로 비교해도 무조건 같다고 나옴
+    0 === -0; // true
+    0 == -0; // true
+    ```
 
 - 대소 관계 비교 연산자 (>, <, >=, <=)
 
@@ -111,11 +112,11 @@
   - ex. x % 2 ? ‘홀수’ : ‘짝수’
     - x % 2 === 0이면 0은 false, 따라서 짝수가 출력됨, x는 짝수
     - x % 2 === 1이면 1은 true, 따라서 홀수가 출력됨, x는 홀수
-    ```jsx
-    var age = 25;
-    var beverage = age >= 20 ? "Beer" : "Juice";
-    console.log(beverage); // Beer
-    ```
+      ```jsx
+      var age = 25;
+      var beverage = age >= 20 ? "Beer" : "Juice";
+      console.log(beverage); // Beer
+      ```
 - 조건식의 평가 결과에 따라 반환 값을 결정
 - 삼항 조건 연산자 표현식은 값으로 평가할 수 있는 표현식인 문 = 다른 표현식의 일부가 될 수 있음 (유용함)
 
@@ -203,7 +204,7 @@
 
 ## 7.10 그 외의 연산자
 
-<br><img src="./yjs_images/07_image_1.png" alt="07_image_1" width="500px">
+<img src="./yjs_images/07_image_1.png" alt="07_image_1" width="500px">
 
 <br>
 
@@ -223,7 +224,7 @@
 
 ## 7.12 연산자 우선 순위
 
-<br><img src="./yjs_images/07_image_2.png" alt="07_image_2" width="500px">
+<img src="./yjs_images/07_image_2.png" alt="07_image_2" width="500px">
 
 <br><img src="./yjs_images/07_image_3.png" alt="07_image_3" width="500px">
 
