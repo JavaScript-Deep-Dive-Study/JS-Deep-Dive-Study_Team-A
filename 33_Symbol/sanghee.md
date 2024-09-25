@@ -10,7 +10,8 @@ ES6에서 도입된 7번째 데이터 타입으로 **변경 불가능한 원시 
 
 ## Symbol 함수
 
-심벌 값은 Symbol 함수를 호출하여 생성한다. 다른 원시값과 달리 리터럴 표기법을 통해 값을 생성할 수 없다.
+심벌 값은 Symbol 함수를 호출하여 생성한다.
+이때 생성된 Symbol은 객체가 아니라 변경 불가능한 원시 타입의 값이다.
 
 ```jsx
 // Symbol 함수를 호출하여 유일무이한 심벌 값을 생성한다.
@@ -21,12 +22,15 @@ console.log(typeof mySymbol); // symbol
 console.log(mySymbol); // Symbol()
 ```
 
-Symbol 함수에는 선택적으로 문자열을 인수로 전달할 수 있는데, 이는 설명으로 디버깅 용도로만 사용된다.
+Symbol 함수에는 선택적으로 문자열을 인수로 전달할 수 있는데, 이는 설명으로 디버깅 용도, 이름표 용도로만 사용된다.  
+​심볼은 유일성이 보장되는 자료형이기 때문에, 설명이 동일한 심볼을 여러 개 만들어도 각 심볼값은 다르다.
 
 ```jsx
 const mySymbol1 = Symbol("mySymbol");
 const mySymbol2 = Symbol("mySymbol");
 
+console.log(mySymbol1); // Symbol(mySymbol)
+console.log(mySymbol2); // Symbol(mySymbol)
 console.log(mySymbol1 === mySymbol2); // false
 ```
 
@@ -57,7 +61,10 @@ if (mySymbol) console.log("mySymbol is not empty.");
 
 ## Symbol.for 메서드
 
-Symbol.for 메서드는 인수로 전달받은 문자열을 키로 사용하여 키와 심벌 값의 쌍들이 저장되어 있는 전역 심벌 레지스트리에서 해당 키와 일치하는 심벌 값을 검색한다.
+Symbol() 은 고유한 심볼을 반환한다.
+
+하지만 Symbol.for() 는 전역 심벌 레지스트리의 목록을 참조한다.  
+Symbol.for 메서드는 인수로 전달받은 문자열을 키로 사용하여 전역 심벌 레지스트리에서 해당 키와 일치하는 심벌 값을 검색한다.
 
 ```jsx
 // 전역 심벌 레지스트리에 mySymbol이라는 키로 저장된 심벌 값이 없으면 새로운 심벌 값을 생성
@@ -66,29 +73,19 @@ const s1 = Symbol.for("mySymbol");
 const s2 = Symbol.for("mySymbol");
 
 console.log(s1 === s2); // true
+console.log(s1); // Symbol(mySymbol)
+console.log(s2); // Symbol(mySymbol)
 ```
-
-Symbol 함수는 호출될 때마다 유일무이한 심벌 값을 생성한다.  
-이때 자바스크립트 엔진이 관리하는 심벌 값 저장소인 전역 심벌 레지스트리에서 심벌 값을 검색할 수 있는 키를 지정할 수 없으므로 전역 심벌 레지스트리에 등록되어 관리되지 않는다.
 
 <br/>
 
 ## Symbol.keyFor 메서드
 
-Symbol.for와 달리 Symbol.keyFor 메서드를 사용하면 애플리케이션 전역에서 중복되지 않는 유일무이한 상수인 심벌 값을 단 하나만 생성하여 전역 심벌 레지스트리를 통해 공유할 수 있다.
-
-또한 이 메서드를 통해 전역 심벌 레지스트리에 저장된 심벌 값의 키를 추출할 수 있다.
+Symbol.keyFor 메서드는 심볼 값을 인수로 받아서 전역 심볼 레지스트리에 저장된 심볼 값 키를 가져올 수 있다.
 
 ```jsx
-// 전역 심벌 레지스트리에 mySymbol이라는 키로 저장된 심벌 값이 없으면 새로운 심벌 값을 생성
 const s1 = Symbol.for("mySymbol");
-// 전역 심벌 레지스트리에 저장된 심벌 값의 키를 추출
 Symbol.keyFor(s1); // -> mySymbol
-
-// Symbol 함수를 호출하여 생성한 심벌 값은 전역 심벌 레지스트리에 등록되어 관리되지 않는다.
-const s2 = Symbol("foo");
-// 전역 심벌 레지스트리에 저장된 심벌 값의 키를 추출
-Symbol.keyFor(s2); // -> undefined
 ```
 
 <br/>
@@ -96,6 +93,24 @@ Symbol.keyFor(s2); // -> undefined
 # 심벌과 상수
 
 변경/중복될 가능성이 있는 무의미한 상수 대신 중복될 가능성이 없는 유일무이한 심벌 값을 사용할 수 있다.
+
+```jsx
+// 위, 아래, 왼쪽, 오른쪽을 나타내는 상수를 정의한다.
+// 이때 값 1, 2, 3, 4에는 특별한 의미가 없고 상수 이름에 의미가 있다.
+const Direction = {
+  UP: 1,
+  DOWN: 2,
+  LEFT: 3,
+  RIGHT: 4,
+};
+
+// 변수에 상수를 할당
+const myDirection = Direction.UP;
+
+if (myDirection === Direction.UP) {
+  console.log("You are going UP.");
+}
+```
 
 ```jsx
 const Direction = {
